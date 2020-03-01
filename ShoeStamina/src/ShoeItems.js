@@ -1,27 +1,22 @@
 import React, { Component } from "react";
- 
+
+
+
 class ShoeItems extends Component {
-    constructor(props) {
-        super(props);
-     
-        this.createShoe = this.createShoe.bind(this);
-      }
-     
-      delete(key) {
-        this.props.delete(key);
-      }
-      createShoe(item) {
-        return <li onClick={() => this.delete(item.key)} 
-                    key={item.key}>{item.text}</li>
-      }
- 
   render() {
-    var shoeEntries = this.props.entries;
-    var listShoes = shoeEntries.map(this.createShoe);
- 
+    var todoEntries = this.props.entries;
+    var listItems = [];
+
+    for (var i = 0; i < todoEntries.length; i++) {
+      var entry = todoEntries[i];
+      listItems.push(<li key={"item" + i}>
+        <a href={entry.link}>{entry.shoes}</a> Kilometers run: {entry.km}
+      </li>);
+    }
+
     return (
       <ul className="theList">
-          {listShoes}
+        {listItems}
       </ul>
     );
   }
