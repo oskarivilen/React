@@ -3,62 +3,53 @@ import ShoeItems from "./ShoeItems";
 import "./Listing.css";
 
 class Listing extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            items: []
-          };
-     
-        this.addItem = this.addItem.bind(this);
-        this.deleteItem = this.deleteItem.bind(this);
-      }
-       
-      addItem(e) {
-        if (this._inputElement.value !== "") {
-            var newItem = {
-              text: this._inputElement.value,
-              key: Date.now()
-            };
-         
-            this.setState((prevState) => {
-              return { 
-                items: prevState.items.concat(newItem) 
-              };
-            });
-           
-            this._inputElement.value = "";
-          }
-           
-          console.log(this.state.items);
-             
-          e.preventDefault();
-        }
-        deleteItem(key) {
-            var filteredItems = this.state.items.filter(function (item) {
-              return (item.key !== key);
-            });
-           
-            this.setState({
-              items: filteredItems
-            });
-          }
+  state = {
+    items: [],
+    km: "",
+    shoes: "",
+    link: ""
+  };
+  
+  updateValue = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  }
+  
+  addItem = (e) => {
+    var itemArray = this.state.items;
+    itemArray.push({
+      km: this.state.km,
+      shoes: this.state.shoes,
+      link: this.state.link
+    });
+
+    this.setState({
+      items: itemArray,
+      km: "",
+      shoes: "",
+      link: ""
+    });
+  }
+  
   render() {
-      return (
-    <div className="todoListMain">
-    <div className="header">
-      <form onSubmit={this.addItem}>
-        <input ref={(a) => this._inputElement = a} 
-                placeholder="Enter Shoe">
-        </input>
-        <button type="submit">Add</button>
-      </form>
-    </div>
-    <ShoeItems entries={this.state.items}
-                 delete={this.deleteItem}/>
-  </div>
-);
-}
-}
+    return (
+      <div className="shoelistMain">
+        <div className="header"
+          onChange={this.updateValue}>
+          <input id="km" placeholder="Kilometers run" value={this.state.km}/>
+          <input id="shoes" placeholder="Shoes" value={this.state.shoes}/>
+          <input id="link" placeholder="Link to shoes" value={this.state.link}/>
+          <button onClick={this.addItem}>add</button>
+        </div>
+        <ShoeItems entries={this.state.items}/>
+      </div>
+    );
+  }
+};
+
+
+
  
 export default Listing;
