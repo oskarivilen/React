@@ -1,12 +1,31 @@
 import React, { Component } from "react";
 
+class Shoe extends React.Component {
+  
+    constructor(props) {
+      super(props)
+      
+      this.state = {
+        km : this.props.km
+      }
+    }
+    
+    render() {
+      return (
+<div>
+  <ProgressBarExample km={this.state.kilometers} />
+  </div>
+      )
+  }
+}
 
 class ProgressBarExample extends React.Component {
   constructor(props) {
     super(props)
     
     this.state = {
-      percentage: 0 
+      percentage: this.props.km / 5 
+     
     }
     
     this.nextStep = this.nextStep.bind(this)
@@ -21,7 +40,7 @@ class ProgressBarExample extends React.Component {
     return (
       <div>
         
-        <h2> Kilometers done </h2>
+        <h2> Kilometers run </h2>
         <ProgressBar percentage={this.state.percentage}  />
         
         <div style={{ marginTop: '20px' }}>  
@@ -32,7 +51,8 @@ class ProgressBarExample extends React.Component {
           </button>  
         </div>   
         
-        <div style={{marginTop: '10px', color: 'blue', marginBottom: '15px'}} onClick={() => this.setState({ percentage: 0 })}>
+        <div style={{marginTop: '10px', color: 'blue', marginBottom: '15px'}} 
+        onClick={() => this.setState({ percentage: 0 })}>
           Reset
         </div>
       </div>
@@ -63,8 +83,10 @@ class ShoeItems extends Component {
     for (var i = 0; i < shoeEntries.length; i++) {
       var entry = shoeEntries[i];
       listItems.push(<li key={"item" + i}>
-        <a href={entry.link}>{entry.shoes}</a> || Kilometers run: {entry.km}
+        <a href={entry.link}>{entry.shoes}</a>   Kilometers: {entry.km} / 500
         <ProgressBarExample />
+        
+       
       </li>);
     }
 
