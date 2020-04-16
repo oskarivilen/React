@@ -1,44 +1,121 @@
 
 
-.todoListMain .header input {
+.shoelistMain .header input {
     padding: 10px;
     font-size: 16px;
     border: 2px solid #FFF;
     width: 165px;
+    margin: 10px;
+    
   }
-  .todoListMain .header button {
+  .shoelistMain .longmenu button {
     padding: 10px;
     font-size: 16px;
     margin: 10px;
     margin-right: 0px;
-    background-color: rgb(255, 174, 0);
-    color: rgb(83, 50, 6);
-    border: 2px solid rgb(158, 96, 4);
+    background-color: black ;
+    color: gold;
+    border: 2px solid black ;
+    left: 800px;
+    bottom: 80px;
+    
   }
-  .todoListMain .header button:hover {
+  .shoelistMain .longmenu button:hover {
+      
     background-color: #b97b1d;
     border: 2px solid #cf7b0d;
     cursor: pointer;
+    
   }
-  .todoListMain .theList {
+  
+  .shoelistMain .header button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px;
+    margin-right: 0px;
+    background-color: black ;
+    color: gold;
+    border: 2px solid black ;
+    
+  }
+  .shoelistMain .header button:hover {
+      
+    background-color: #b97b1d;
+    border: 2px solid #cf7b0d;
+    cursor: pointer;
+    
+  }
+  .shoelistMain .theList {
+      
+    display: flex;
     list-style: none;
     padding-left: 0;
     width: 250px;
+    
+    
   } 
-  .todoListMain .theList li {
+  .shoelistMain .theList li {
+      
     color: #333;
     background-color: rgba(255,255,255,.5);
-    padding: 15px;
+    padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
+    margin: 5px;
+    
    
     transition: background-color .2s ease-out;
   }
    
-  .todoListMain .theList li:hover {
+  .shoelistMain .theList li:hover {
     background-color: pink;
     cursor: pointer;
+    
   }
   ul.theList {
     padding: 0;
+    
   }
+  
+
+html, body {
+  font-family: 'Montserrat', sans-serif;
+}
+  .progress-bar {
+    position: relative;
+    height: 20px;
+    width: 220px;
+    border-radius: 50px;
+    border: 1px solid #333;
+    
+  }
+
+.filler {
+  background: gold;
+  height: 100%;
+  border-radius: inherit;
+  transition: width .2s ease-in;
+}
+
+button {
+  margin-right: 10px;
+  padding: 7px 12px;
+  font-size: 14px;
+  background: #d14836;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  outline: 0;
+}
+
+#vids {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+#vids a:first-of-type {
+  margin-bottom: 5px;
+}
