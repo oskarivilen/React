@@ -1,30 +1,16 @@
 import React, { Component } from "react";
+import Grid from '@material-ui/core/Grid';
 
-class Shoe extends React.Component {
-  
-    constructor(props) {
-      super(props)
-      
-      this.state = {
-        km : this.props.km
-      }
-    }
-    
-    render() {
-      return (
-<div>
-  <ProgressBarExample km={this.state.kilometers} />
-  </div>
-      )
-  }
-}
+
+
+
 
 class ProgressBarExample extends React.Component {
   constructor(props) {
     super(props)
     
     this.state = {
-      percentage: this.props.km / 5 
+      percentage: 0
      
     }
     
@@ -33,29 +19,60 @@ class ProgressBarExample extends React.Component {
   
   nextStep() {
     if(this.state.percentage === 100) return 
-    this.setState(prevState => ({ percentage: prevState.percentage + 5 }))
+    this.setState(prevState => ({ percentage: prevState.percentage + 1 }))
   }
+  
   
   render() {
     return (
+      <Grid   container
+      direction="row"
+      justify="center"
+      alignItems="center">
+        
       <div>
         
         <h2> Kilometers run </h2>
-        <ProgressBar percentage={this.state.percentage}  />
+        <h3>{Math.floor((this.state.percentage *5))} / 500</h3>
         
+        <ProgressBar percentage={this.state.percentage}  />
+
+       
+
         <div style={{ marginTop: '20px' }}>  
-          <button 
-            onClick={this.nextStep}
-           >
-            Log run
+        <button 
+            onClick={() => {
+              if(this.state.percentage > 99.94) return 
+              this.setState(prevState => ({ percentage: prevState.percentage + 0.6 }))}}>
+           Short run (3km)
           </button>  
+          <button 
+            onClick={() => {
+              if(this.state.percentage > 99) return 
+              this.setState(prevState => ({ percentage: prevState.percentage + 1 }))}}>
+            Medium run (5km)
+          </button>  
+          <button 
+            onClick={() => {
+              if(this.state.percentage > 98) return 
+              this.setState(prevState => ({ percentage: prevState.percentage + 2 }))}}>
+           Long run (10km)
+          </button>  
+          <button 
+            onClick={() => {
+              if(this.state.percentage > 91.6) return 
+              this.setState(prevState => ({ percentage: prevState.percentage + 8.4 }))}}>
+           Marathon (42km)
+          </button> 
+          
         </div>   
         
-        <div style={{marginTop: '10px', color: 'blue', marginBottom: '15px'}} 
+        <div style={{marginTop: '10px', color: 'red', marginBottom: '15px'}} 
         onClick={() => this.setState({ percentage: 0 })}>
           Reset
         </div>
       </div>
+      </Grid>
     )
   }  
 }
@@ -77,13 +94,14 @@ const Filler = (props) => {
 
 class ShoeItems extends Component {
   render() {
+    
     var shoeEntries = this.props.entries;
     var listItems = [];
 
     for (var i = 0; i < shoeEntries.length; i++) {
       var entry = shoeEntries[i];
       listItems.push(<li key={"item" + i}>
-        <a href={entry.link}>{entry.shoes}</a>   Kilometers: {entry.km} / 500
+        <a href={entry.link}>{entry.shoes}</a> Running Terrain: {entry.km}
         <ProgressBarExample />
         
        
