@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import ShoeItems from "./ShoeItems";
 import "./Listing.css";
-
-
+import LongMenu from "./LongMenu";
 
 class Listing extends Component {
 
@@ -38,19 +37,25 @@ class Listing extends Component {
   
   render() {
     return (
+      
       <div className="shoelistMain">
+        <div className="longmenu">
+        <LongMenu></LongMenu>
+        </div>
         <div className="header"
           onChange={this.updateValue}>
-          <input id="km" placeholder="Kilometers run" value={this.state.km}/>
+            
+          <input id="km" placeholder="Running Terrain" value={this.state.km}/>
           <input id="shoes" placeholder="Shoes" value={this.state.shoes}/>
           <input id="link" placeholder="Link to shoes" value={this.state.link}/>
           
           <button onClick={this.addItem}>add</button>
         </div>
-    
+        
         <ShoeItems entries={this.state.items}/>
         
       </div>
+      
     );
   }
 };
