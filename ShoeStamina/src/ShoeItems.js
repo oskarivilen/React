@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
 
 
-
-
-
 class ProgressBarExample extends React.Component {
   constructor(props) {
     super(props)
@@ -22,22 +19,18 @@ class ProgressBarExample extends React.Component {
     this.setState(prevState => ({ percentage: prevState.percentage + 1 }))
   }
   
-  
   render() {
     return (
       <Grid   container
       direction="row"
       justify="center"
       alignItems="center">
-        
+    
       <div>
-        
         <h2> Kilometers run </h2>
         <h3>{Math.floor((this.state.percentage *5))} / 500</h3>
         
         <ProgressBar percentage={this.state.percentage}  />
-
-       
 
         <div style={{ marginTop: '20px' }}>  
         <button 
@@ -64,12 +57,15 @@ class ProgressBarExample extends React.Component {
               this.setState(prevState => ({ percentage: prevState.percentage + 8.4 }))}}>
            Marathon (42km)
           </button> 
-          
         </div>   
         
-        <div style={{marginTop: '10px', color: 'red', marginBottom: '15px'}} 
+        <div style={{marginTop: '10px', color: 'blue', marginBottom: '15px'}} 
         onClick={() => this.setState({ percentage: 0 })}>
           Reset
+        </div>
+        <div style={{marginTop: '10px', color: 'red', marginBottom: '15px'}} 
+        onClick={() => this.props.delete(this.props.id)}>
+          Delete
         </div>
       </div>
       </Grid>
@@ -80,9 +76,7 @@ class ProgressBarExample extends React.Component {
 const ProgressBar = (props) => {
   return (
       <div className="progress-bar">
-        
         <Filler percentage={props.percentage}/>
-        
       </div>
     )
 }
@@ -93,18 +87,17 @@ const Filler = (props) => {
 
 
 class ShoeItems extends Component {
+
   render() {
-    
+   
     var shoeEntries = this.props.entries;
     var listItems = [];
 
     for (var i = 0; i < shoeEntries.length; i++) {
       var entry = shoeEntries[i];
       listItems.push(<li key={"item" + i}>
-        <a href={entry.link}>{entry.shoes}</a> Running Terrain: {entry.km}
-        <ProgressBarExample />
-        
-       
+        <a href={entry.link}>{entry.label}</a> | Terrain: {entry.terrain}
+        <ProgressBarExample id={entry.id} delete={this.props.delete}/>
       </li>);
     }
 
